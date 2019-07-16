@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Справочник сотрудников компании</title>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Добавить информацию</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="add" method="post" id="add-form">
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="fio" class="col-form-label">ФИО:</label>
+                            <input type="text" class="form-control" id="fio" name="fio">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-form-label">Email:</label>
+                            <input type="email" class="form-control" id="email" name="email"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="col-form-label">Телефон/ы:(";" - разделитель)</label>
+                            <input type="text" class="form-control" id="phone" name="phone"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="office_num" class="col-form-label">Id офиса:</label>
+                            <select class="form-control" id="office_num" name="office_num">
+                                {% for id in office_ids %}
+                                    <option>{{ id.office_id }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <p class="info">Время принятия на работу будет добавлено автоматически</p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                        <button type="submit" class="btn btn-primary" id="final_add_emp">Добавить работниика</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="edit_window" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Окончание работы</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="edit" method="post">
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" id="id" name="id">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-end-time" class="col-form-label">Время окончания работы:</label>
+                            <input type="datetime-local" class="form-control" id="edit-end-time" name="edit-end-time">
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                        <button type="submit" class="btn btn-primary" id="edit-form">Закончить работу</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class = "row">
+        <div class = "col-md-12">
+            <h2>Справочник сотрудников компании</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class = "col-md-12">
+
+        </div>
+    </div>
+    <table class="table table-bordered table-striped" id="table">
+        <thead>
+        <tr>
+            <th>ФИО</th>
+            <th>Email</th>
+            <th>Телефон/ы</th>
+            <th>Id офиса</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for emp in emps %}
+        <tr>
+            <td>{{ emp.fname }} {{ emp.lname }} {{ emp.sname}}</td>
+            <td>{{ emp.email }}</td>
+            <td>
+                {% for ph in phone_nums%}
+                    {% for p in ph %}
+                        {% for k, v in p %}
+                            {% if p.emp_id == emp.employer_id and k == 'phone_num' %}
+                                {{ v }}
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}
+            </td>
+            <td>{{ emp.office_id }} </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+        Добавить работника
+    </button>
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script
+        src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="app/views/templates/js/add.js"></script>
+<!--<script src="app/views/templates/js/edit.js"></script>-->
+</body>
+</html>
