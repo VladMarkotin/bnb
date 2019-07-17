@@ -56,7 +56,7 @@ class __TwigTemplate_77e1a89f22c782423622b3fdf11653640bfd7e259952db2c4c6f4d41181
                     <div class=\"modal-body\">
 
                         <div class=\"form-group\">
-                            <label for=\"fio\" class=\"col-form-label\">ФИО:</label>
+                            <label for=\"fio\" class=\"col-form-label\">ФИО (Введите фамилию,имя и отчество через пробел):</label>
                             <input type=\"text\" class=\"form-control\" id=\"fio\" name=\"fio\">
                         </div>
                         <div class=\"form-group\">

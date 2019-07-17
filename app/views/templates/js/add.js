@@ -35,9 +35,12 @@ $('#final_add_emp').click(function (event){
     var email = $('#email').val();
     var phones = $('#phone').val();
     var office_num = $('#office_num').val();
+    var test_fio = fio.split(' ');
+    console.log(test_fio.length);
     if(phones !== '')
         phones = phones.split(';');
-    if (fio && validateEmail(email) && checkEmailInCollection(email, getEmailsOnPage()) && (phones.length != 0)){
+    if (fio && validateEmail(email) && checkEmailInCollection(email, getEmailsOnPage()) && (phones.length != 0)
+        && (test_fio.length == 3)){
         var form = $('#add-form').serialize();
         var url = "/";
         $.post( "add", form ).done(function(response) {
