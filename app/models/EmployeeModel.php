@@ -8,7 +8,7 @@
 namespace App\Model;
 
 
-use Exceptions\ExceptionClass as Ex;
+use Core\Exceptions\ExceptionClass as Ex;
 use App\Controllers\Request\RequestClass as Request;
 use App\Model\PhoneModel as Phone;
 

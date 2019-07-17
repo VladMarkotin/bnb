@@ -8,21 +8,22 @@
 namespace App\Controllers\Request;
 
 
-use Exceptions\ExceptionClass as Ex;
+use Core\Exceptions\ExceptionClass as Ex;
 
 /**
  * Class RequestClass
  * @package App\Controllers\Request
  */
-class RequestClass {
+class RequestClass
+{
 
     private $data = [];
 
     /**
      * @param array $arr
      */
-    public function setData(array $arr){
-
+    public function setData(array $arr)
+    {
         foreach ($arr as $k => $v){
             $this->data[$k] = $v;
         }
@@ -31,7 +32,8 @@ class RequestClass {
     /**
      * @return array
      */
-    public function getData(){
+    public function getData()
+    {
         return $this->data;
     }
 
@@ -40,7 +42,8 @@ class RequestClass {
      * @return mixed
      * @throws Ex
      */
-    public function getElement($in){
+    public function getElement($in)
+    {
         if (isset($this->data[$in]) )
             return $this->data[$in];
         throw new Ex("Такой элемент не передавался через POST $in");

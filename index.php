@@ -7,7 +7,7 @@
  */
 require_once  'vendor/autoload.php';
 
-$core = \Core\CoreClass::getInstance();
+$core = Core\CoreClass::getInstance();
 $core->init();
 $router = $core->getSystemObject();
 

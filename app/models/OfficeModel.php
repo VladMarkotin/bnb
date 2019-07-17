@@ -63,7 +63,7 @@ class OfficeModel extends Model
     /**
      * @param Request $data
      * @return mixed
-     * @throws \Exceptions\ExceptionClass
+     * @throws \Core\Exceptions\ExceptionClass
      */
     private function Insert(Request $data)
     {

@@ -9,12 +9,14 @@ namespace Core\Template;
 
 
 use Core\AbstractCore as AC;
-use Exceptions\ExceptionClass as Ex;
+use Core\Exceptions\ExceptionClass as Ex;
 
 class TemplateClass extends AC
 {
     private static $template = null;
+
     private $loader = null;
+
     private $twig = null;
 
     /**

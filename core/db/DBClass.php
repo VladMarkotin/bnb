@@ -21,7 +21,7 @@ class DBClass
     private static $db_connect = null;
 
     /**
-     *
+     * 
      */
     public function init()
     {

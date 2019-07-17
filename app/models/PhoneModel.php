@@ -9,7 +9,7 @@ namespace App\Model;
 
 
 use App\Model\Model;
-use Exceptions\ExceptionClass as Ex;
+use Core\Exceptions\ExceptionClass as Ex;
 use App\Controllers\Request\RequestClass as Request;
 
 /**
@@ -42,7 +42,8 @@ class PhoneModel extends Model
     /**
      * @return null
      */
-    protected  function getDBHConnect(){
+    protected  function getDBHConnect()
+    {
         return $this->getConnect();
     }
 

@@ -10,7 +10,7 @@ namespace Core;
 
 use Core\router as router;
 use Core\DB\DBClass as DB;
-use Exceptions\ExceptionClass as Ex;
+use Core\Exceptions\ExceptionClass as Ex;
 use Core\Template\TemplateClass as Template;
 
 class CoreClass

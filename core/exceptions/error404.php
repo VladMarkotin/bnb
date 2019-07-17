@@ -25,7 +25,6 @@ class Error404
         $core = CoreClass::getInstance();
         $core->init();
         $template = $core->getSystemObject("template");
-
         $twig = $template->getTwig();
         echo $twig->render($view);
     }

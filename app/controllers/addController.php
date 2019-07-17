@@ -21,7 +21,7 @@ class addController
     /**
      * @param Request $data
      * @param null $redirect
-     * @throws \exceptions\ExceptionClass
+     * @throws \Core\Exceptions\ExceptionClass
      */
     public function getPostData(Request $data, $redirect = null)
     {

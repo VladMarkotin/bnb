@@ -10,8 +10,8 @@ namespace App\Controllers;
 
 use core\CoreClass as Core;
 
-class testController {
-
+class testController
+{
     private $core;
 
     public function __construct($view = null)
@@ -24,9 +24,7 @@ class testController {
                 $twig = $template->getTwig();
                 echo $twig->render($view);
             }
-
         }
-
     }
 
     public function index(){
