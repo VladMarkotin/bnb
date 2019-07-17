@@ -31,22 +31,21 @@ function getEmailsOnPage() {
 
 $('#final_add_emp').click(function (event){
     event.preventDefault();
-    //getEmailsOnPage();
     var fio = $('#fio').val();
     var email = $('#email').val();
     var phones = $('#phone').val();
     var office_num = $('#office_num').val();
-    phones = phones.split(';');
-    if (fio && validateEmail(email) && checkEmailInCollection(email, getEmailsOnPage()) && phones){
+    if(phones !== '')
+        phones = phones.split(';');
+    if (fio && validateEmail(email) && checkEmailInCollection(email, getEmailsOnPage()) && (phones.length != 0)){
         var form = $('#add-form').serialize();
         var url = "/";
         $.post( "add", form ).done(function(response) {
             console.log(response);
             $("#table").append("<tr><td>" + fio + "</td><td>" + email + "</td><td>"+ phones + "</td><td>" +
-                office_num  + "</td></tr>");
+                office_num + "</td></tr>");
             $('#add-form')[0].reset();
         });
     }
-
 });
 getEmailsOnPage();
