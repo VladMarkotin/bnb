@@ -27,7 +27,7 @@ class DBClass
     {
         try {
             if (!self::$db_connect)
-                self::$db_connect = new \PDO('mysql:host=127.0.0.1:3306;dbname=' . DB, USER, PASS);
+                self::$db_connect = new \PDO(HOST. DB, USER, PASS);
         } catch(\PDOException $e){
             die('Error witth DB connection! '. $e);
         }
