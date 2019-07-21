@@ -16,7 +16,7 @@ use App\Controllers\Validator\ValidatorClass;
  * Class addController
  * @package App\Controllers
  */
-class addController
+class addController extends Controller
 {
     /**
      * @param Request $data

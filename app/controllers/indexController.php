@@ -9,7 +9,6 @@ namespace App\Controllers;
 
 
 use App\Model\PhoneModel;
-use Core\CoreClass;
 use App\Model\OfficeModel;
 use App\Model\EmployeeModel;
 
@@ -17,7 +16,7 @@ use App\Model\EmployeeModel;
  * Class indexController
  * @package App\Controllers
  */
-class indexController
+class indexController extends Controller
 {
     /**
      * indexController constructor.
@@ -25,21 +24,19 @@ class indexController
      */
     public function __construct($view = null)
     {
+        parent::__construct($view);
         /* При наличии шаблона для страницы
          * рендерим его с помощью шаблонизатора Twig. Предварительно
          * получаем объеки-ядро приложения, который и обеспечивает доступ к шаблонизатору
          */
         if($view){
-            $core = CoreClass::getInstance();
-            $core->init();
             $employeeModel = new EmployeeModel();
             $officeModel = new OfficeModel();
             $phoneModel = new PhoneModel();
             $office_ids = $officeModel->exec();
             $emps = $employeeModel->exec();
             $phoneNums = $phoneModel->exec("select",$emps);
-            $template = $core->getSystemObject("template");
-            $twig = $template->getTwig();
+            $twig = $this->template->getTwig();
             if($emps){
                 $fio = $emps[0]['lname']. " ". $emps[0]['fname']. " " .$emps[0]['secondname'];
                 echo $twig->render($view, array('emps' => $emps, "fio" => $fio, "office_ids" => $office_ids,
