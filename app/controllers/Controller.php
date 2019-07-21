@@ -27,8 +27,8 @@ class Controller
     public function __construct($view = null)
     {
         $this->core = CoreClass::getInstance();
+        $this->core->init();
         if($view){
-            $this->core->init();
             $this->template = $this->core->getSystemObject("template");
         }
     }

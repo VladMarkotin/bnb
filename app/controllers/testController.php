@@ -10,24 +10,14 @@ namespace App\Controllers;
 
 use core\CoreClass as Core;
 
-class testController
+class testController extends Controller
 {
-    private $core;
-
     public function __construct($view = null)
     {
+        parent::__construct($view);
         if($view){
-            $this->core = Core::getInstance();
-            if($view){
-                $this->core->init();
-                $template = $this->core->getSystemObject("template");
-                $twig = $template->getTwig();
-                echo $twig->render($view);
-            }
+            $twig = $this->template->getTwig();
+            echo $twig->render($view);
         }
-    }
-
-    public function index(){
-
     }
 } 

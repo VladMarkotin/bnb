@@ -78,7 +78,8 @@ class RouterClass extends AC
      * @param null $redirect
      * @throws Ex
      */
-    private function CheckMethod($object, $method, $params = null, $redirect = null ){
+    private function CheckMethod($object, $method, $params = null, $redirect = null )
+    {
         if (!method_exists($object, $method)){
             throw new Ex("with method: $method");
         }
